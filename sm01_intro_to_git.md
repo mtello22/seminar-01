@@ -145,7 +145,7 @@ below for your operating system.
 
 #### Is Git already installed?
 
-Open the shell (terminal / command line). Type in “git –version”, no
+Open the shell (terminal / command line). Type in `git --version`, no
 quotation, press enter.
 
 ``` bash
@@ -153,21 +153,27 @@ git --version
 ## git version 2.33.1
 ```
 
-If you see a printout of the version number as shown above, this means
-you have Git already. Great! But wait. Is the version number \< 2.28? If
-so, you’ll need to update (follow the install instructions based on your
-operating system below). The reason you need to update if you have an
-older version of Git is that newer versions allow us to configure the
-default branch name. There is a movement in the Git community to [rename
-the default branch of repositories from ‘master’ in favor of the neutral
-term ‘main’](https://github.com/github/renaming), as ‘master’ has
-[offensive connotations](https://www.bbc.com/news/technology-53050955).
-
-If you see something more like `git: command not found`, proceed to the
+If you see something like `git: command not found`, proceed to the
 instructions for installation based on your operating system.
 
+If you see a printout of the version number as shown above, this means
+you have Git already. Great! But wait. Is the version number \< 2.28? If
+so, I recommend that you update it (follow the install instructions
+based on your operating system below). The reason you should update if
+you have an older version of Git is that newer versions allow us to
+configure the default branch name. There is a movement in the Git
+community to [rename the default branch of repositories from ‘master’ in
+favor of the neutral and inclusive term
+‘main’](https://github.com/github/renaming), as ‘master’ has offensive
+connotations. [GitHub has made the change to default new branch names as
+main](https://www.bbc.com/news/technology-53050955). With older versions
+of git, the default branch will always be ‘master’, so each time you
+create a new repo you’ll have to rename the local default branch to
+avoid conflicts with the GitHub default. With a newer version (2.28 and
+later) you can set it once and you’re good to go for all new repos.
+
 Otherwise, if you have a current version of Git installed, you can skip
-this step!
+the next step!
 
 #### Install Git for Windows people
 
@@ -188,19 +194,9 @@ installation.
 
 #### Install Git for Mac people
 
-If you just need to update, try this command:
-
-``` bash
-brew install git
-```
-
-After running this, check the version is now updated. Additionally, save
-yourself some headache and [make sure that RStudio is pointing to the
-correct version of git](https://happygitwithr.com/rstudio-see-git.html).
-
-If you need to install Git anew, first install the Xcode command line
-tools (not all of Xcode), which includes Git by opening a terminal and
-typing in the following and press enter. Follow prompts.
+First install the Xcode command line tools (not all of Xcode), which
+includes Git by opening a terminal and typing in the following and press
+enter. Follow prompts.
 
 ``` bash
 xcode-select --install
@@ -223,6 +219,21 @@ git config
 ```
 
 Accept the offer! Click on “Install”.
+
+If the Xcode method isn’t successful for you, you can install git from
+here: <http://git-scm.com/downloads>. Or you can try this command if you
+use Homebrew:
+
+``` bash
+brew install git
+```
+
+Verify that you’re ready to go by running the `git --version` command
+once again.
+
+Additionally if you’ve updated your git version, save yourself some
+potential headache and [make sure that RStudio is pointing to the
+correct version of git](https://happygitwithr.com/rstudio-see-git.html).
 
 #### Install Git for Linux people
 
@@ -352,10 +363,34 @@ you’ll need to reauthenticate with a new one).
 
 #### Set the default branch name to main
 
-Finally, we’ll set the default branch name to main.
+Finally, we’ll set the global option for all new repositories to use a
+default branch name of main.
 
 ``` bash
 git config --global init.defaultBranch main
+```
+
+If this command is successful, great! Move on to Part 3.
+
+Note that this command will only work for Git versions 2.28 and higher,
+so if your version is older, you’ll have to **rename the default branch
+each time you create a new repo.** Here’s how to do that.
+
+Option 1: You can do this on the command line (from within the new
+repo):
+
+``` bash
+git branch -M main
+```
+
+Option 2: In an RStudio project for the new repo, run the following line
+of R code, which uses the `usethis` package:
+
+``` r
+# install usethis first if it's not already installed
+install.packages("usethis")
+# rename default branch from master to main 
+usethis::git_default_branch_rename(to = "main")
 ```
 
 ## Part 3: Create, Clone, Stage, Commit, Push, Pull!
@@ -695,7 +730,9 @@ these two commits (**and push** - verify that you can see them on GitHub
 like below, otherwise we won’t be able to see them) by the deadline. The
 TAs will mark the repos based on the latest commit that occurred before
 the deadline (this tag is auto-generated). Any commits after the
-deadline will be ignored.
+deadline will be ignored (not marked).
+
+![Verify two commits are visible](images/twocommits.png)
 
 ## Final notes and some additional resources
 
