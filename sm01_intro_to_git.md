@@ -506,7 +506,15 @@ below.
 
 ![Repository link screenshot](images/create_repository_success_link.png)
 
-In RStudio, start a new Project:
+**Important Note:** Unlike in this example, where we started with an
+empty repository, for some future deliverables, the repository created
+for you will already contain files. In that case, **to find the
+“repository URL”, locate the green “Code” button on the upper right
+corner of the file list as shown below.**
+
+![GitHub clone](images/clone.png)
+
+Next, in RStudio, start a new Project:
 
 -   File > New Project > Version Control > Git. In the “repository URL”
     paste the URL of your new GitHub repository.
@@ -643,13 +651,11 @@ range of project management features including issues, wiki pages, and
 contribution statistics. You will inevitably learn more and you gain
 more experience!
 
-Take note of the “Code” green button on the upper right corner of the
-file list. This is where you can obtain the URL to this repository if
-someone else were to clone your repository. Keep in mind that the owner
-of this repository must first add the individuals to the collaborators
-list in order for them to have access, since this repo is private to
-only you and the teaching team. This is done by going to ‘Settings’ -
-see below.
+Keep in mind that if someone else wants to clone your repository, an
+owner (in the case of assignments that is you or a teaching team member)
+must first add the individual(s) to the collaborators list in order for
+them to have access. This is because the repo is private to only you and
+the teaching team. This is done by going to ‘Settings’ - see below.
 
 ![GitHub add collaborators](images/add_collabs.png)
 
